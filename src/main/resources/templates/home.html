@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+
+    <meta charset="utf-8" />
+
+</head>
+<body>
+<h2 th:text= "${dto.getSymbol()}"></h2>
+<h2 th:text= "${dto.getPrice()}"></h2>
+<h2 th:text= "${dto.getChange()}"></h2>
+<h2 th:text= "${dto.getPercent()}"></h2>
+
+</body>
+</html>
