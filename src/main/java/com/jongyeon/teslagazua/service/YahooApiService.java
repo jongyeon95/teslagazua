@@ -18,7 +18,7 @@ public class YahooApiService {
          */
 
 
-        Stock getSingleStock(String s) throws IOException {
+        public Stock getSingleStock(String s) throws IOException {
             Stock stock= YahooFinance.get(s);
             return stock;
         }
@@ -36,7 +36,7 @@ public class YahooApiService {
                 return null;
             Calendar from = Calendar.getInstance();
             Calendar to = Calendar.getInstance();
-            from.add(Calendar.DATE, period*-1); // from 5 years ago
+            from.add(Calendar.DATE, period); // from 5 years ago
             return YahooFinance.get(s,from, to, Interval.DAILY);
         }
 }

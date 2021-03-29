@@ -2,17 +2,68 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
 
     <meta charset="utf-8" />
+    <img src="https://t1.daumcdn.net/news/202103/17/fmkorea/20210317153458396otin.gif" alt="this slowpoke moves"  width=250/>
+    <div id="stockInfo">
+        <h1 style="color: crimson;" >TSLA</h1>
+        <p>현재가 :</p>
+        <p id="price" style="color: black"></p>
+        <p id="change" style="color: red"></p>
+        <p id="percent" style="color: red"></p>
+
+    </div>
 
 </head>
 <body>
-<h2 th:text= "${dto.getSymbol()}"></h2>
-<h2 th:text= "${dto.getPrice()}"></h2>
-<h2 th:text= "${dto.getChange()}"></h2>
-<h2 th:text= "${dto.getPercent()}"></h2>
+
 
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/stock/TSLA',
+            success: function (result) {
+                var symbol=result.symbol;
+                var price=result.price;
+                var change=result.change;
+                var percent=result.percent;
+                var color="red";
+                if(change>0)
+                    color="green";
+
+                $("#price").html(price);
+                $("#change").css("color",color).html(change);
+                $("#percent").css("color",color).html(percent);
+            }
+        })
+        setInterval(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/stock/TSLA',
+                success: function (result) {
+                    var symbol=result.symbol;
+                    var price=result.price;
+                    var change=result.change;
+                    var percent=result.percent;
+                    var color="red";
+                    if(change>0)
+                        color="green";
+
+                    $("#price").html(price);
+                    $("#change").css("color",color).html(change);
+                    $("#percent").css("color",color).html(percent);
+                }
+            })
+        }, 2000);
+    });
+</script>
