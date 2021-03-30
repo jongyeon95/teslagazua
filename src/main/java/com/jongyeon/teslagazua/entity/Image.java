@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class GifImage {
+public class Image {
     @Id
     @GeneratedValue
     private Long id;
