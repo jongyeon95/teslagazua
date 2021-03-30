@@ -8,8 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TeslagazuaApplication {
 
-    @Autowired
-    public static AutoUpdateStock autoUpdateStock;
+   
 
     public static void main(String[] args) {
 
