@@ -2,6 +2,7 @@ package com.jongyeon.teslagazua.controller;
 
 
 import com.jongyeon.teslagazua.model.StockDto;
+import com.jongyeon.teslagazua.service.AutoUpdateStock;
 import com.jongyeon.teslagazua.service.YahooApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +19,13 @@ public class StockController {
     @Autowired
     YahooApiService yahooApiService;
 
-    @GetMapping("/stock/{name}")
-    public StockDto getStockInfo(@PathVariable("name") String name) throws IOException {
-        Stock stock=yahooApiService.getSingleStock(name);
-        StockDto dto = new StockDto().builder()
-                .symbol(stock.getSymbol())
-                .price(stock.getQuote().getPrice())
-                .change(stock.getQuote().getChange())
-                .percent(stock.getQuote().getChangeInPercent())
-                .build();
-        System.out.println(dto.getPrice());
-        return  dto;
+    @Autowired
+    AutoUpdateStock autoUpdateStock;
+
+    @GetMapping("/stock")
+    public StockDto getStockInfo() throws IOException {
+        return  autoUpdateStock.getStockDto();
     }
+
+
 }
