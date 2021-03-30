@@ -28,15 +28,18 @@
 </html>
 
 <script>
+    var price;
+    var change;
+    var percent;
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: '/stock/TSLA',
             success: function (result) {
-                var symbol=result.symbol;
-                var price=result.price;
-                var change=result.change;
-                var percent=result.percent;
+
+                price=result.price;
+                change=result.change;
+                percent=result.percent;
                 var color="red";
                 if(change>0)
                     color="green";
@@ -51,10 +54,10 @@
                 type: 'GET',
                 url: '/stock/TSLA',
                 success: function (result) {
-                    var symbol=result.symbol;
-                    var price=result.price;
-                    var change=result.change;
-                    var percent=result.percent;
+
+                    price=result.price;
+                    change=result.change;
+                    percent=result.percent;
                     var color="red";
                     if(change>0)
                         color="green";
