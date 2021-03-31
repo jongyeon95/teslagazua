@@ -10,20 +10,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
 
     <meta charset="utf-8" />
-    <img id="imageAddress" src="" alt="this slowpoke moves"  width=250/>
-    <div id="stockInfo">
-        <h1 style="color: crimson;" >TSLA</h1>
-        <p>현재가 :</p>
-        <p id="price" style="color: black"></p>
-        <p id="change" style="color: red"></p>
-        <p id="percent" style="color: red"></p>
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body {
 
-    </div>
+            width: 100%;
+            height: 100%;
+            margin:  0;
+            background-color: black;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+
+        }
+        #main{
+            margin: 0 auto;
+            width:  100%;
+            height: 100%;
+            background-image: url("logo.png");
+            background-repeat: no-repeat;
+            background-position: center left;
+            background-size:contain;
+            background-attachment: fixed;
+        }
+    </style>
+
 
 </head>
 <body>
 
 
+<div id="main">
+    <div style="width:100%; height: 40%; text-align:center; margin-top: 10%" >
+        <img id="imageAddress" src="" alt="TSLA" height="100%"/>
+    </div>
+
+    <div id="stockInfo" align="center">
+        <h1 style="color: crimson;" >TSLA</h1>
+
+        <p style="color: white">현재가 : <b id="price"></b> </p>
+        <p style="color: white"> 전일대비 : <b id="change"></b> ( <b id="percent"></b> )  </p>
+
+    </div>
+</div>
 </body>
 </html>
 
@@ -44,9 +76,9 @@
                 if(change>0)
                     color="green";
 
-                $("#price").html(price);
-                $("#change").css("color",color).html(change);
-                $("#percent").css("color",color).html(percent);
+                $("#price").html(price+"$");
+                $("#change").css("color",color).html(change+"$");
+                $("#percent").css("color",color).html(percent+"%");
             }
         })
         setInterval(function () {
@@ -62,9 +94,9 @@
                     if(change>0)
                         color="green";
 
-                    $("#price").html(price);
-                    $("#change").css("color",color).html(change);
-                    $("#percent").css("color",color).html(percent);
+                    $("#price").html(price+"$");
+                    $("#change").css("color",color).html(change+"$");
+                    $("#percent").css("color",color).html(percent+"%");
                 }
             })
         }, 5000);
@@ -76,6 +108,6 @@
                     $("#imageAddress").attr("src",result);
                 }
             })
-        }, 10000);
+        }, 3000);
     });
 </script>
