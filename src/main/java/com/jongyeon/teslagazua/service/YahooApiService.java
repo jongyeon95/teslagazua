@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Map;
 @Service
-public class YahooApiService {
+public class YahooApiService{
 
         /*
          * 주식정보 API 주소
@@ -20,8 +20,11 @@ public class YahooApiService {
 
         public Stock getSingleStock(String s) throws IOException {
             Stock stock= YahooFinance.get(s);
+
             return stock;
         }
+
+
 
         Map<String, Stock> getStocks(String[] s) throws IOException {
             return YahooFinance.get(s);
