@@ -18,27 +18,29 @@
         html{
             width: 100%;
             height: 100%;
+            background-color: black;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         body {
 
             width: 100%;
             height: 100%;
             margin:  0;
-            background-color: black;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-
-
-        }
-        #main{
-            margin: 0 auto;
-            width:  50%;
-            height: 100%;
             background-image: url("logo.png");
             background-repeat: no-repeat;
             background-position: center left;
             background-size:contain;
             background-attachment: fixed;
+
+
+
+        }
+        #main{
+            margin: 0 auto;
+            width:  70%;
+            height: 100%;
+
         }
     </style>
 
@@ -46,22 +48,21 @@
 </head>
 <body>
 
-
 <div id="main">
-    <div style="width:100%; height: 40%; text-align:center; margin-top: 10%" >
-        <img id="imageAddress" src="" alt="TSLA" height="100%"/><br>
+    <div style="width:100%; height: 40%; text-align:center; margin: 0 auto;" >
+        <img id="imageAddress" src="" alt="TSLA" width="60%" height="100%"/><br>
         <sub id="imageSource" style="color: gray"> </sub>
     </div>
 
-    <div id="stockInfo" align="center" style="font-family: 'tesla'" >
-        <p style="color: red; font-size: 60px; font-weight: bold" >TESLA</p>
+    <div id="stockInfo" align="center" style="font-family: 'tesla'; width:60%; height: 40%; margin: 0 auto;" >
+        <p><span style="color: red; font-size: 60px; font-weight: bold; background-color: black">TESLA</span></p>
 
-        <p style="color: white; font-size: 40px">PRICE :  <a style="font-family: Arial"><b id="price"></b></a>       </p>
-        <p style="color: white; font-size: 40px">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a>  </p>
+        <p><span style="color: white; font-size: 40px; background-color: black">PRICE :  <a style="font-family: Arial"><b id="price"></b></a>       </span></p>
+        <p><span style="color: white; font-size: 40px; background-color: black">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a> </span> </p>
 
     </div>
     <div id="comments">
-        
+
     </div>
 </div>
 
