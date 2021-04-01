@@ -11,6 +11,10 @@
 
     <meta charset="utf-8" />
     <style>
+        @font-face {
+            font-family: "tesla";
+            src: url("/font/TESLA.ttf");
+        }
         html{
             width: 100%;
             height: 100%;
@@ -28,7 +32,7 @@
         }
         #main{
             margin: 0 auto;
-            width:  100%;
+            width:  50%;
             height: 100%;
             background-image: url("logo.png");
             background-repeat: no-repeat;
@@ -45,17 +49,22 @@
 
 <div id="main">
     <div style="width:100%; height: 40%; text-align:center; margin-top: 10%" >
-        <img id="imageAddress" src="" alt="TSLA" height="100%"/>
+        <img id="imageAddress" src="" alt="TSLA" height="100%"/><br>
+        <sub id="imageSource" style="color: gray"> </sub>
     </div>
 
-    <div id="stockInfo" align="center">
-        <h1 style="color: crimson;" >TSLA</h1>
+    <div id="stockInfo" align="center" style="font-family: 'tesla'" >
+        <p style="color: red; font-size: 60px; font-weight: bold" >TESLA</p>
 
-        <p style="color: white">현재가 : <b id="price"></b> </p>
-        <p style="color: white"> 전일대비 : <b id="change"></b> ( <b id="percent"></b> )  </p>
+        <p style="color: white; font-size: 40px">PRICE :  <a style="font-family: Arial"><b id="price"></b></a>       </p>
+        <p style="color: white; font-size: 40px">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a>  </p>
 
+    </div>
+    <div id="comments">
+        
     </div>
 </div>
+
 </body>
 </html>
 
@@ -79,6 +88,14 @@
                 $("#price").html(price+"$");
                 $("#change").css("color",color).html(change+"$");
                 $("#percent").css("color",color).html(percent+"%");
+            }
+        })
+        $.ajax({
+            type: 'GET',
+            url: '/image/'+percent,
+            success: function (result) {
+                $("#imageAddress").attr("src",result);
+                $("#imageSource").html("출처"+result);
             }
         })
         setInterval(function () {
@@ -106,6 +123,7 @@
                 url: '/image/'+percent,
                 success: function (result) {
                     $("#imageAddress").attr("src",result);
+                    $("#imageSource").html("출처: "+result);
                 }
             })
         }, 3000);

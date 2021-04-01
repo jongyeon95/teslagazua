@@ -16,13 +16,20 @@ public class ImageService {
     private ImageRepository imageRepository;
 
     public String getImageAddress(float a){
-        if(a>5){
-            a=5;
+        float start=a-1;
+        float end=a+1;
+        if(a>=0){
+            if(start<0){
+                start=0;
+            }
         }
-        else if(a<-5){
-            a=-5;
+
+        else if(a<0){
+           if(end>=0){
+               end=0;
+           }
         }
-        List<Image> list = imageRepository.findByWeightBetween(a-1,a);
+        List<Image> list = imageRepository.findByWeightBetween(start,end);
         if(list.size()==0){
             if(a>=0){
                 list=imageRepository.findByWeightBetween(0,100);
