@@ -12,7 +12,7 @@ public class ImageController {
     @Autowired
     ImageService imageService;
 
-    @GetMapping("/image/{weight}")
+    @GetMapping("/images/{weight}")
     public String getImage(@PathVariable("weight") float weight){
         return imageService.getImageAddress(weight);
     }

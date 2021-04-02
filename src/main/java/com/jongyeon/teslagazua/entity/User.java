@@ -28,4 +28,10 @@ public class User {
     public String getRoleKey(){
         return this.role.getKey();
     }
+
+    public User update(String name){
+        this.name = name;
+        return this;
+    }
+
 }
