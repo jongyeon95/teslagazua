@@ -47,9 +47,9 @@
 
 </head>
 <body>
-<div align="right">
+<div align="right" style="margin-right: 20px">
     <a th:if="${userName == null}" >
-        <a style="color: white" href="/oauth2/authorization/google" > Login</a>
+        <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/oauth2/authorization/google" > Login</a>
     </a>
     <a style="color: white" th:if="${userName != null}" >
         <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
@@ -60,12 +60,14 @@
         <img id="imageAddress" src="" alt="TSLA" width="60%" height="100%"/><br>
         <sub id="imageSource" style="color: gray"> </sub>
     </div>
+    </br>
+    </br>
 
-    <div id="stockInfo" align="center" style="font-family: 'tesla'; width:70%; height: 40%; margin: 0 auto;" >
-        <p><span style="color: red; font-size: 6vw; font-weight: bold; background-color: black">TESLA</span></p>
+    <div id="stockInfo" align="center" style="font-family: 'tesla'; width:70vmin; height: 30vmin; margin: 0 auto; border: 5px solid red; background-color: black" >
+        <span style="color: red; font-size: 7vmin; font-weight: bold; background-color: black">TESLA</span></br>
 
-        <p><span style="color: white; font-size: 3vw; background-color: black">PRICE :  <a style="font-family: Arial"><b id="price"></b></a>       </span></p>
-        <p><span style="color: white; font-size: 3vw; background-color: black">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a> </span> </p>
+       <span style="color: white; font-size: 4vmin; background-color: black">PRICE :  <a style="font-family: Arial"><b id="price"></b></a></span></br>
+        <span style="color: white; font-size: 4vmin; background-color: black">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a> </span>
 
     </div>
     <div id="comments">
