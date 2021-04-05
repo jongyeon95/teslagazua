@@ -1,6 +1,9 @@
 package com.jongyeon.teslagazua.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +13,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Comment {
 
     @Id
@@ -20,6 +26,6 @@ public class Comment {
 
     private Long userId;
 
-    private LocalDateTime createdId;
+    private LocalDateTime createdTime;
 
 }

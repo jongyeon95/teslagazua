@@ -20,10 +20,8 @@ public class YahooApiService{
 
         public Stock getSingleStock(String s) throws IOException {
             Stock stock= YahooFinance.get(s);
-
             return stock;
         }
-
 
 
         Map<String, Stock> getStocks(String[] s) throws IOException {

@@ -4,6 +4,7 @@ import com.jongyeon.teslagazua.role.Role;
 import com.jongyeon.teslagazua.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                 .antMatchers("/**","/css/**","/font/**","/image/**").permitAll()
                 .antMatchers("/stock/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/comment/**").hasAnyRole(Role.USER.name(),Role.GUEST.name(),Role.ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/images/**").hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()

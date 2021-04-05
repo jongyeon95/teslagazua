@@ -102,7 +102,7 @@
         })
         $.ajax({
             type: 'GET',
-            url: '/images/'+percent,
+            url: '/images',
             success: function (result) {
                 $("#imageAddress").attr("src",result);
                 $("#imageSource").html("출처"+result);
@@ -130,12 +130,12 @@
         setInterval(function () {
             $.ajax({
                 type: 'GET',
-                url: '/images/'+percent,
+                url: '/images',
                 success: function (result) {
                     $("#imageAddress").attr("src",result);
                     $("#imageSource").html("출처: "+result);
                 }
             })
-        }, 3000);
+        }, 10000);
     });
 </script>
