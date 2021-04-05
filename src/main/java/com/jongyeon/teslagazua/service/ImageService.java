@@ -102,7 +102,9 @@ public class ImageService implements CommandLineRunner {
     public String getImageAddress(){
         Random rand =new Random();
         int upperbound=imageDto.getImageAddress().size();
-        int index=rand.nextInt(upperbound);
+        int index=0;
+        if(upperbound!=0)
+            index=rand.nextInt(upperbound);
         return  imageDto.getImageAddress().get(index);
     }
 

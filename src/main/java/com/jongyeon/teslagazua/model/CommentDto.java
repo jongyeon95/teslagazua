@@ -18,4 +18,8 @@ public class CommentDto {
 
     private Long userId;
 
+    private String username;
+
+    private LocalDateTime createdTime;
+
 }

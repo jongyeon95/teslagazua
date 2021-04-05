@@ -24,6 +24,7 @@ public class CommentService {
         Comment comment=Comment.builder()
                 .contents(resource.getContents())
                 .userId(resource.getUserId())
+                .username(resource.getUsername())
                 .createdTime(LocalDateTime.now())
                 .build();
         return commentRepository.save(comment);

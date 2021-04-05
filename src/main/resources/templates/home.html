@@ -66,11 +66,12 @@
     <div id="stockInfo" align="center" style="font-family: 'tesla'; width:70vmin; height: 30vmin; margin: 0 auto; border: 5px solid red; background-color: black" >
         <span style="color: red; font-size: 7vmin; font-weight: bold; background-color: black">TESLA</span></br>
 
-       <span style="color: white; font-size: 4vmin; background-color: black">PRICE :  <a style="font-family: Arial"><b id="price"></b></a></span></br>
+        <span style="color: white; font-size: 4vmin; background-color: black">PRICE :  <a style="font-family: Arial"><b id="price"></b></a></span></br>
         <span style="color: white; font-size: 4vmin; background-color: black">CHANGE : <a style="font-family: Arial"><b id="change"></b> ( <b id="percent"></b> )</a> </span>
 
     </div>
-    <div id="comments">
+    </br>
+    <div id="comments" style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black" >
 
     </div>
 </div>
@@ -106,6 +107,24 @@
             success: function (result) {
                 $("#imageAddress").attr("src",result);
                 $("#imageSource").html("출처"+result);
+            }
+        })
+        $.ajax({
+            type: 'GET',
+            url: '/comment',
+            success: function (result) {
+                var html="";
+
+                for( index in result){
+
+                    html += '<div id="comment'+result[index].id+'">';
+                    html += '<div style="'+'font-size: 2vmin; margin-left: 10%">'+result[index].contents+'</div>';
+                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].username+'</div>';
+                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].created_time+'</div>';
+                    html += '</div></br>';
+                }
+                $("#comments").empty();
+                $("#comments").append(html);
             }
         })
         setInterval(function () {
