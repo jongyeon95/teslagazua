@@ -25,12 +25,8 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) throws IOException {
         SessionUser user= (SessionUser) httpSession.getAttribute("user");
-
-
-
         if (user!=null){
             model.addAttribute("userName",user.getName());
-
         }
         return "home";
     }

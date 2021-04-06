@@ -33,8 +33,6 @@
             background-size:contain;
             background-attachment: fixed;
 
-
-
         }
         #main{
             margin: 0 auto;
@@ -71,8 +69,20 @@
 
     </div>
     </br>
-    <div id="comments" style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black" >
+    <div style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black" >
+        <div id="submit_comment" align="center">
+            <textarea id="new_comment" name="new_comment" rows="3" style="width: 80%"></textarea></br>
 
+        </div>
+        <div align="right" th:if="${userName != null}">
+            <button type="submit" style="margin-right: 10%" onclick="">Submit</button>
+        </div>
+        <div align="right" th:if="${userName == null}">
+            <button type="submit" style="margin-right: 10%"  onclick="">로그인 필요</button>
+        </div>
+
+        <div id="comments">
+        </div>
     </div>
 </div>
 

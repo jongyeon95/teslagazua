@@ -28,6 +28,8 @@ public class Comment {
 
     private String username;
 
+    private String userEmail;
+
     private LocalDateTime createdTime;
 
 }

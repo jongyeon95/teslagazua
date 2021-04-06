@@ -20,6 +20,8 @@ public class CommentDto {
 
     private String username;
 
+    private String userEmail;
+
     private LocalDateTime createdTime;
 
 }
