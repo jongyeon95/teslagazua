@@ -50,6 +50,7 @@
         <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/oauth2/authorization/google" > Login</a>
     </a>
     <a style="color: white" th:if="${userName != null}" >
+
         <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
     </a>
 </div>
@@ -75,7 +76,7 @@
 
         </div>
         <div align="right" th:if="${userName != null}">
-            <button type="submit" style="margin-right: 10%" onclick="">Submit</button>
+            <button type="submit" style="margin-right: 10%" onclick="addComment()">Submit</button>
         </div>
         <div align="right" th:if="${userName == null}">
             <button type="submit" style="margin-right: 10%"  onclick="">로그인 필요</button>
@@ -93,6 +94,47 @@
     var price;
     var change;
     var percent;
+
+    function addComment() {
+        var data ={
+            contents:$("#new_comment").val()
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/comment',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            success : function (result) {
+
+                alert("댓글 작성완료");
+                getComments();
+            }
+        })
+    }
+
+    function  getComments(){
+        $.ajax({
+            type: 'GET',
+            url: '/comment',
+            success: function (result) {
+                var html="";
+
+                for( index in result){
+
+                    html += '<div id="comment'+result[index].id+'">';
+                    html += '<div style="'+'font-size: 2vmin; margin-left: 10%">'+result[index].contents+'</div>';
+                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].username+'</div>';
+                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].created_time+'</div>';
+                    html += '</div></br>';
+                }
+                $("#comments").empty();
+                $("#comments").append(html);
+            }
+        })
+    }
+
+
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
@@ -119,24 +161,7 @@
                 $("#imageSource").html("출처"+result);
             }
         })
-        $.ajax({
-            type: 'GET',
-            url: '/comment',
-            success: function (result) {
-                var html="";
-
-                for( index in result){
-
-                    html += '<div id="comment'+result[index].id+'">';
-                    html += '<div style="'+'font-size: 2vmin; margin-left: 10%">'+result[index].contents+'</div>';
-                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].username+'</div>';
-                    html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].created_time+'</div>';
-                    html += '</div></br>';
-                }
-                $("#comments").empty();
-                $("#comments").append(html);
-            }
-        })
+        getComments();
         setInterval(function () {
             $.ajax({
                 type: 'GET',

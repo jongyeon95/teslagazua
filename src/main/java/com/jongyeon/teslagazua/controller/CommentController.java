@@ -6,6 +6,7 @@ import com.jongyeon.teslagazua.model.SessionUser;
 import com.jongyeon.teslagazua.service.CommentService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,7 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+
     @Autowired
     HttpSession httpSession;
 
@@ -26,14 +28,16 @@ public class CommentController {
         return commentService.getComments();
     }
 
+    //todo : return type 바꿀 것
     @ResponseBody
     @PostMapping("/comment")
-    public void addComment(@RequestBody CommentDto resource){
+    public HttpStatus addComment(@RequestBody CommentDto resource){
         SessionUser user= (SessionUser) httpSession.getAttribute("user");
-        if (user!=null){
-           return;
+        if (user==null){
+           return HttpStatus.BAD_REQUEST;
         }
-        commentService.addComment(resource);
+        commentService.addComment(resource, user.getEmail());
+        return HttpStatus.OK;
     }
 
 }
