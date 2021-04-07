@@ -17,7 +17,7 @@
         }
         html{
             width: 100%;
-            height: 100%;
+
             background-color: black;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -25,7 +25,7 @@
         body {
 
             width: 100%;
-            height: 100%;
+
             margin:  0;
             background-image: url("/image/logo.png");
             background-repeat: no-repeat;
@@ -51,7 +51,7 @@
     </a>
     <a style="color: white" th:if="${userName != null}" >
 
-        <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
+        <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a><a style="color: white; font-family: 'tesla'; font-size: 3vmin" href="/logout"> LOGOUT </a>
     </a>
 </div>
 <div id="main">
@@ -70,7 +70,7 @@
 
     </div>
     </br>
-    <div style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black" >
+    <div style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black; font-size: 1vmin" >
         <div id="submit_comment" align="center">
             <textarea id="new_comment" name="new_comment" rows="3" style="width: 80%"></textarea></br>
 
