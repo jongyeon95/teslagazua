@@ -5,6 +5,7 @@ import com.jongyeon.teslagazua.model.ImageDto;
 import com.jongyeon.teslagazua.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -106,6 +107,17 @@ public class ImageService implements CommandLineRunner {
         if(upperbound!=0)
             index=rand.nextInt(upperbound);
         return  imageDto.getImageAddress().get(index);
+    }
+
+    public HttpStatus addImage(String address , float weight){
+        if(address==null)
+            return HttpStatus.BAD_REQUEST;
+        Image newImage=Image.builder()
+                .address(address)
+                .weight(weight)
+                .build();
+        imageRepository.save(newImage);
+        return HttpStatus.OK;
     }
 
 

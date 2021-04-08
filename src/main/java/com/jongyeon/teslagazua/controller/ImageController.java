@@ -1,10 +1,10 @@
 package com.jongyeon.teslagazua.controller;
 
+import com.jongyeon.teslagazua.entity.Image;
 import com.jongyeon.teslagazua.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ImageController {
@@ -15,6 +15,11 @@ public class ImageController {
     @GetMapping("/images")
     public String getImage(){
         return imageService.getImageAddress();
+    }
+
+    @PostMapping("/images")
+    public HttpStatus addImage(@RequestBody Image resource){
+        return imageService.addImage(resource.getAddress(),resource.getWeight());
     }
 
 }
