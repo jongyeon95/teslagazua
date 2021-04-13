@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     compile group: 'com.yahoofinance-api', name: 'YahooFinanceAPI', version: '3.15.0'
-    compile('org.springframework.session:spring-session-jdbc')
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
