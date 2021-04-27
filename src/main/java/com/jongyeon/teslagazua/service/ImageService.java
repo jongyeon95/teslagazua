@@ -32,7 +32,7 @@ public class ImageService implements CommandLineRunner {
     public void run(String... args) throws Exception {
         imageDto = new ImageDto();
         imageDto.getImageAddress().add(imageRepository.findByWeightBetween(0,1).get(0).getAddress());
-        exec = new ScheduledThreadPoolExecutor(1);
+
     }
 
 
@@ -86,7 +86,7 @@ public class ImageService implements CommandLineRunner {
 
     //업데이트 시작
     public void autoUpdate(){
-
+        exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -97,7 +97,7 @@ public class ImageService implements CommandLineRunner {
                     exec.shutdown();
                 }
             }
-        },0,10, TimeUnit.SECONDS);
+            },0,10, TimeUnit.SECONDS);
     }
 
     public String getImageAddress(){

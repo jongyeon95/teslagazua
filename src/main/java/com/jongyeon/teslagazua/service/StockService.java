@@ -22,7 +22,7 @@ public class StockService implements CommandLineRunner {
 
         yahooApiService=new YahooApiService();
         stockDto = setStockDto();
-        exec = new ScheduledThreadPoolExecutor(1);
+
 
     }
 
@@ -37,7 +37,7 @@ public class StockService implements CommandLineRunner {
 
 
     public void autoUpdate(){
-
+        exec = new ScheduledThreadPoolExecutor(1);
         exec.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
