@@ -19,7 +19,7 @@ public class StockScheduleConfig {
         stockService.stopUpdate();
     }
 
-    @Scheduled(cron = "59 29 22 * * 1-5")
+    @Scheduled(cron = "57 29 22 * * 1-5")
     public void startUpdate(){
         stockService.autoUpdate();
     }
