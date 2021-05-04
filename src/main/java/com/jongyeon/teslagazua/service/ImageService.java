@@ -25,8 +25,11 @@ public class ImageService implements CommandLineRunner {
     @Autowired
     private ImageRepository imageRepository;
 
+
     @Autowired
     private StockService stockService;
+
+
 
     @Override
     public void run(String... args) throws Exception {

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface NoticeRepository extends CrudRepository<Notice,Long> {
     List<Notice> findAllByOrderByIdDesc();
+
 }

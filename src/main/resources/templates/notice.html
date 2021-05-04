@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+
+    <meta charset="utf-8" />
+    <style>
+        @font-face {
+            font-family: "tesla";
+            src: url("/font/TESLA.ttf");
+        }
+        html{
+            width: 100%;
+
+            background-color: black;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        body {
+
+            width: 100%;
+
+            margin:  0;
+            background-repeat: no-repeat;
+            background-position: center left;
+            background-size:contain;
+            background-attachment: fixed;
+
+        }
+        #main{
+            margin: 0 auto;
+            width:  70%;
+            height: 100%;
+
+        }
+        a { text-decoration:none }
+
+        #notice {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            font-size: 2vmin;
+            width: 100%;
+        }
+
+        #notice td, #notice th {
+            border: 2px solid #000000;
+            padding: 8px;
+        }
+
+        #notice tr:nth-child(even){background-color: #f2f2f2;}
+
+        #notice tr:hover {background-color: #ddd;}
+
+        #notice th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #e8e8e8;
+            color: #000000;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="top" style="width: 100%;" >
+
+    <div style="position: fixed; right: 20px; top:20px;">
+        <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/notice">
+            HOME
+        </a>
+        <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/notice">
+            공지사항
+        </a>
+        <a th:if="${userName == null}" >
+            <a style="color: white; font-size: 3vmin; margin-right: 20px" href="/oauth2/authorization/google" > LOGIN</a>
+        </a>
+        <a th:if="${userName != null}" >
+            <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
+            <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a>
+        </a>
+    </div>
+</div>
+
+
+
+
+<div id="main">
+    <div id="title">
+    <h2 style="color: white; width: 100%; margin-top: 15%; text-align: center">
+        공지 사항
+    </h2>
+    </div>
+    <div style="width:70vmin; color: white; margin: 0 auto; border: 2px solid red; background-color: black; font-size: 1vmin">
+        <table id="notice">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>제목</th>
+                <th>등록자</th>
+                <th>등록일</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody th:if="${userName == null}">
+
+                <tr th:each="list : ${nList}">
+                    <td th:text="${list.getId()}"></td>
+                    <td>
+                        <a th:text="${list.getTitle()}" th:href="'notice/'+${list.getTitle()}">
+                        </a>
+                    </td>
+                    <td th:text="${list.getUser().getName()}"></td>
+                    <td th:text="${list.getCreatedAt()}"></td>
+                    <td th:text="${list.getView()}"></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
