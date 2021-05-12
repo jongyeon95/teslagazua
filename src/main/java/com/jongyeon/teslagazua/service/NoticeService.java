@@ -27,7 +27,7 @@ public class NoticeService {
     }
 
 
-    public List<NoticeDto> getNotice(){
+    public List<NoticeDto> getNoticeList(){
         List<Notice> list = noticeRepository.findAllByOrderByIdDesc();
         List<NoticeDto> dList=new ArrayList<>();
         for(int i=0; i<list.size(); i++){
@@ -42,6 +42,19 @@ public class NoticeService {
         }
         return dList;
 
+    }
+
+    public NoticeDto getNotice(Long id){
+        Notice notice = noticeRepository.findById(id).orElseThrow(()-> new IdNotFoundException());
+        NoticeDto dto = NoticeDto.builder()
+                .user(userRepository.findById(notice.getUserid()).orElseThrow(()-> new IdNotFoundException()))
+                .id(notice.getId())
+                .title(notice.getTitle())
+                .content(notice.getContent())
+                .createdAt(notice.getCreatedAt())
+                .view(notice.getView())
+                .build();
+        return dto;
     }
 
 
