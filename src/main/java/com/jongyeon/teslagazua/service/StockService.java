@@ -1,6 +1,7 @@
 package com.jongyeon.teslagazua.service;
 
 import com.jongyeon.teslagazua.model.StockDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,16 @@ import java.util.concurrent.TimeUnit;
 public class StockService implements CommandLineRunner {
 
     private StockDto stockDto;
+
     private ScheduledThreadPoolExecutor exec;
+
     private YahooApiService yahooApiService;
+
 
     @Override
     public void run(String... args) throws Exception {
-
         yahooApiService=new YahooApiService();
         stockDto = setStockDto();
-
 
     }
 

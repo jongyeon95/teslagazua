@@ -20,14 +20,18 @@ public class ImageService implements CommandLineRunner {
 
 
     private ImageDto imageDto;
+
     private ScheduledThreadPoolExecutor exec;
 
-    @Autowired
     private ImageRepository imageRepository;
 
+    private StockService stockService;
 
     @Autowired
-    private StockService stockService;
+    public ImageService(StockService stockService, ImageRepository imageRepository){
+        this.imageRepository=imageRepository;
+        this.stockService=stockService;
+    }
 
 
 

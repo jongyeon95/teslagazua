@@ -14,11 +14,15 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    @Autowired
     private CommentRepository commentRepository;
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public CommentService(CommentRepository commentRepository, UserRepository userRepository){
+        this.commentRepository=commentRepository;
+        this.userRepository=userRepository;
+    }
 
     public List<Comment> getComments(){
         List<Comment> list = commentRepository.findAllByOrderByCreatedTimeDesc();
