@@ -25,7 +25,7 @@ public class CommentController {
 
     @GetMapping("/comment")
     public List<Comment> getCommentList(){
-        return commentService.getComments();
+        return commentService.getCommentList();
     }
 
     //todo : return type 바꿀 것

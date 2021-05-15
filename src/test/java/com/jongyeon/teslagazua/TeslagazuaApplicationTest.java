@@ -1,13 +1,14 @@
 package com.jongyeon.teslagazua;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+
 @SpringBootTest
-class TeslagazuaApplicationTests {
-
+public class TeslagazuaApplicationTest {
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
-
 }
+

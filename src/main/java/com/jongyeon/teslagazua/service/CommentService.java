@@ -24,7 +24,8 @@ public class CommentService {
         this.userRepository=userRepository;
     }
 
-    public List<Comment> getComments(){
+
+    public List<Comment> getCommentList(){
         List<Comment> list = commentRepository.findAllByOrderByCreatedTimeDesc();
         return  list;
     }

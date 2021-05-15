@@ -8,6 +8,7 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class TeslagazuaApplication {
+
     @PostConstruct
     void started() {
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
