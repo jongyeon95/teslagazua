@@ -37,7 +37,7 @@ public class ImageService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        imageDto = new ImageDto();
+        this.imageDto = new ImageDto();
         imageDto.getImageAddress().add(imageRepository.findByWeightBetween(0,1).get(0).getAddress());
 
     }
