@@ -27,6 +27,18 @@ public class CommentService {
 
     public List<Comment> getCommentList(){
         List<Comment> list = commentRepository.findAllByOrderByCreatedTimeDesc();
+        for(int i=0; i<list.size(); i++){
+            String origin=list.get(i).getUsername();
+            StringBuilder sb=new StringBuilder();
+            for(int j=0; j<origin.length(); j++){
+                if(j%2==1)
+                    sb.append("*");
+                else
+                    sb.append(origin.charAt(j));
+            }
+            list.get(i).setUsername(sb.toString());
+
+        }
         return  list;
     }
 
