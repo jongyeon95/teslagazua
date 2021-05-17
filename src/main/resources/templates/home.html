@@ -138,6 +138,13 @@
 
                 for( index in result){
                     var username=result[index].username;
+                    var newName="";
+                    for(var i =0; i<username.length; i++){
+                        if(i%2==1)
+                            newName=newName+"*";
+                        else
+                            newName=newName+username.charAt(i);
+                    }
 
 
                     html += '<div id="comment'+result[index].id+'">';
