@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ImageRepository extends CrudRepository<Image,Long> {
     List<Image> findByWeightBetween(float a, float b);
+    List<Image> findAllByWeightIsGreaterThanEqual(float a);
+    List<Image> findAllByWeightLessThanEqual(float b);
 }

@@ -39,7 +39,6 @@ public class ImageService implements CommandLineRunner {
     public void run(String... args) throws Exception {
         this.imageDto = new ImageDto();
         imageDto.getImageAddress().add(imageRepository.findByWeightBetween(0,1).get(0).getAddress());
-
     }
 
 
@@ -55,35 +54,22 @@ public class ImageService implements CommandLineRunner {
             changeB=BigDecimal.valueOf(0);
 
         float change= changeB.floatValue();
-        float start=change-1;
-        float end=change+1;
+
+        List<Image> list;
 
         if(change>=0){
-            if(start<0){
-                start=0;
-            }
+           list=imageRepository.findAllByWeightIsGreaterThanEqual(0);
         }
-        else if(change<0){
-            if(end>=0){
-                end=0;
-            }
-        }
-        List<Image> list = imageRepository.findByWeightBetween(start,end);
-
-        if(list.size()==0){
-            if(change>=0){
-                list=imageRepository.findByWeightBetween(0,100);
-            }
-            else{
-                list=imageRepository.findByWeightBetween(0,-100);
-            }
+        else{
+            list=imageRepository.findAllByWeightLessThanEqual(0);
         }
 
         List<String> addressList = new ArrayList<>();
+
         for(Image temp : list){
             addressList.add(temp.getAddress());
         }
-        imageDto.setImageAddress(addressList);
+        this.imageDto.setImageAddress(addressList);
     }
 
     //업데이트 중지
@@ -113,6 +99,9 @@ public class ImageService implements CommandLineRunner {
         int index=0;
         if(upperbound!=0)
             index=rand.nextInt(upperbound);
+        else
+            return "Not Found";
+
         return  imageDto.getImageAddress().get(index);
     }
 
