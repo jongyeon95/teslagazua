@@ -109,14 +109,15 @@
     var price;
     var change;
     var percent;
-
+    var click=true;
     function addComment() {
+        if(!click)
+            return;
+        click=false;
         var data ={
             contents:$("#new_comment").val()
         }
-        if(data=="")
-            return;
-        $("#new_comment").val('');
+
         $.ajax({
             type: 'POST',
             url: '/comment',
@@ -124,11 +125,14 @@
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success : function (result) {
-
+                $("#new_comment").val('');
                 getComments();
                 alert("댓글 작성완료");
             }
         })
+        setTimeout(function (){
+            click = true;
+        },500);
     }
 
     function  getComments(){
