@@ -36,7 +36,7 @@ public class NoticeController {
 
     @ResponseBody
     @GetMapping("/notice/{id}")
-    public String getDetail(@RequestParam("id") Long id){
+    public String getDetail(@PathVariable("id") Long id){
         NoticeDto dto=noticeService.getNotice(id);
         return dto.toString();
     }
