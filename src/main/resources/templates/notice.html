@@ -111,12 +111,9 @@
             </thead>
             <tbody th:if="${userName == null}">
 
-                <tr th:each="list : ${nList}" th:href="'notice/'+${list.getId()}">
+                <tr th:each="list : ${nList}" th:onclick="'javascript:rowClicked(\'notice/'+${list.getId()}+'\');'">
                     <td th:text="${list.getId()}"></td>
-                    <td>
-                        <a th:text="${list.getTitle()}" th:href="'notice/'+${list.getId()}">
-                        </a>
-                    </td>
+                    <td th:text="${list.getTitle()}"></td>
                     <td th:text="${list.getUser().getName()}"></td>
                     <td th:text="${list.getCreatedAt()}"></td>
                     <td th:text="${list.getView()}"></td>
@@ -131,5 +128,10 @@
 </div>
 
 </body>
+<script>
+    function rowClicked(value) {
+        location.href = "/" + value;
+    }
+</script>
 </html>
 
