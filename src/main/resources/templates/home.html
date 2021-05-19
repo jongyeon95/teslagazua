@@ -50,7 +50,7 @@
 <div id="top" style="width: 100%;" >
 
     <div style="position: fixed; right: 20px; top:20px;">
-        <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/notice">
+        <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/">
             HOME
         </a>
         <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/notice">
@@ -60,8 +60,8 @@
             <a style="color: white; font-size: 3vmin; margin-right: 20px" href="/oauth2/authorization/google" > LOGIN</a>
         </a>
         <a th:if="${userName != null}" >
+            <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a></br>
             <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
-            <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a>
         </a>
     </div>
 </div>
@@ -114,6 +114,8 @@
         var data ={
             contents:$("#new_comment").val()
         }
+        if(data=="")
+            return;
         $.ajax({
             type: 'POST',
             url: '/comment',
@@ -121,10 +123,9 @@
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success : function (result) {
-
-                alert("댓글 작성완료");
-                $("#new_comment").val('');
                 getComments();
+                $("#new_comment").val('');
+                alert("댓글 작성완료");
             }
         })
     }
@@ -145,7 +146,6 @@
                         else
                             newName=newName+username.charAt(i);
                     }
-
 
                     html += '<div id="comment'+result[index].id+'">';
                     html += '<div style="'+'font-size: 2vmin; margin-left: 10%">'+result[index].contents+'</div>';

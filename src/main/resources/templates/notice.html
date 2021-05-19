@@ -83,8 +83,8 @@
             <a style="color: white; font-size: 3vmin; margin-right: 20px" href="/oauth2/authorization/google" > LOGIN</a>
         </a>
         <a th:if="${userName != null}" >
+            <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a></br>
             <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
-            <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a>
         </a>
     </div>
 </div>
@@ -111,10 +111,10 @@
             </thead>
             <tbody th:if="${userName == null}">
 
-                <tr th:each="list : ${nList}">
+                <tr th:each="list : ${nList}" th:href="'notice/'+${list.getId()}">
                     <td th:text="${list.getId()}"></td>
                     <td>
-                        <a th:text="${list.getTitle()}" th:href="'notice/'+${list.getTitle()}">
+                        <a th:text="${list.getTitle()}" th:href="'notice/'+${list.getId()}">
                         </a>
                     </td>
                     <td th:text="${list.getUser().getName()}"></td>
