@@ -116,6 +116,7 @@
         }
         if(data=="")
             return;
+        $("#new_comment").val('');
         $.ajax({
             type: 'POST',
             url: '/comment',
@@ -123,8 +124,8 @@
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
             success : function (result) {
+
                 getComments();
-                $("#new_comment").val('');
                 alert("댓글 작성완료");
             }
         })
