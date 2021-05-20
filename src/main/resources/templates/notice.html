@@ -109,7 +109,7 @@
                 <th>조회수</th>
             </tr>
             </thead>
-            <tbody th:if="${userName == null}">
+            <tbody>
 
                 <tr th:each="list : ${nList}" th:onclick="'javascript:rowClicked(\'notice/'+${list.getId()}+'\');'">
                     <td th:text="${list.getId()}"></td>
