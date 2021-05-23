@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 public class NoticeServiceTest {
@@ -24,15 +25,15 @@ public class NoticeServiceTest {
     private NoticeService noticeService;
 
     @Mock
-    private NoticeRepository noticeRepository;
+    private UserService userService;
 
     @Mock
-    private UserRepository userRepository;
+    private NoticeRepository noticeRepository;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        noticeService=new NoticeService(noticeRepository,userRepository);
+        noticeService=new NoticeService(noticeRepository,userService);
     }
 
     @Test
@@ -55,7 +56,7 @@ public class NoticeServiceTest {
         mockList.add(mockNotice);
 
         given(noticeRepository.findAllByOrderByIdDesc()).willReturn(mockList);
-        given(userRepository.findById(1L)).willReturn(Optional.ofNullable(mockUser));
+        given(userService.getUserById(any())).willReturn(mockUser);
         List<NoticeDto> list = noticeService.getNoticeList();
         assertThat(list.get(0).getUser().getName(),is("tester"));
         assertThat(list.get(0).getUser().getId(),is(1L));

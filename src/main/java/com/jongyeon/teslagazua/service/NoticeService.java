@@ -18,12 +18,12 @@ public class NoticeService {
 
     private NoticeRepository noticeRepository;
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    NoticeService(NoticeRepository noticeRepository, UserRepository userRepository){
+    NoticeService(NoticeRepository noticeRepository, UserService userService){
         this.noticeRepository=noticeRepository;
-        this.userRepository=userRepository;
+        this.userService=userService;
     }
 
 
@@ -32,7 +32,7 @@ public class NoticeService {
         List<NoticeDto> dList=new ArrayList<>();
         for(int i=0; i<list.size(); i++){
             NoticeDto dto = NoticeDto.builder()
-                    .user(userRepository.findById(list.get(i).getUserid()).orElseThrow(()-> new IdNotFoundException()))
+                    .user(userService.getUserById(list.get(i).getId()))
                     .id(list.get(i).getId())
                     .title(list.get(i).getTitle())
                     .createdAt(list.get(i).getCreatedAt())
@@ -47,7 +47,7 @@ public class NoticeService {
     public NoticeDto getNotice(Long id){
         Notice notice = noticeRepository.findById(id).orElseThrow(()-> new IdNotFoundException());
         NoticeDto dto = NoticeDto.builder()
-                .user(userRepository.findById(notice.getUserid()).orElseThrow(()-> new IdNotFoundException()))
+                .user(userService.getUserById(notice.getUserid()))
                 .id(notice.getId())
                 .title(notice.getTitle())
                 .content(notice.getContent())
