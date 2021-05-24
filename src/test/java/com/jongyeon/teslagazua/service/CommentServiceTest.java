@@ -34,12 +34,12 @@ public class CommentServiceTest {
     private CommentRepository commentRepository;
 
     @Mock
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        commentService=new CommentService(commentRepository,userRepository);
+        commentService=new CommentService(commentRepository,userService);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class CommentServiceTest {
                 .build();
 
 
-        given(userRepository.findByEmail("test@test.com")).willReturn(Optional.ofNullable(mockUser));
+        given(userService.getUserByEmail("test@test.com")).willReturn(mockUser);
         commentService.addComment(dto,"test@test.com");
         verify(commentRepository).save(any());
     }

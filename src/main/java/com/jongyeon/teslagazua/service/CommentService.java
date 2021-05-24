@@ -16,12 +16,12 @@ public class CommentService {
 
     private CommentRepository commentRepository;
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public CommentService(CommentRepository commentRepository, UserRepository userRepository){
+    public CommentService(CommentRepository commentRepository,UserService userService){
         this.commentRepository=commentRepository;
-        this.userRepository=userRepository;
+        this.userService=userService;
     }
 
 
@@ -31,7 +31,7 @@ public class CommentService {
     }
 
     public Comment addComment(CommentDto resource, String userEmail){
-        User user=userRepository.findByEmail(userEmail).orElse(null);
+        User user=userService.getUserByEmail(userEmail);
         if(user==null)
             return null;
 
