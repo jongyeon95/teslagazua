@@ -49,7 +49,7 @@
 
 <div id="top" style="width: 100%;" >
 
-    <div style="position: fixed; right: 20px; top:20px;">
+    <div style="position: fixed; right: 20px; top:20px; text-align: right">
         <a style="color: white;font-family: 'tesla'; font-size: 3vmin" href="/">
             HOME
         </a>
@@ -57,7 +57,11 @@
             공지사항
         </a>
         <a th:if="${userName == null}" >
-            <a style="color: white; font-size: 3vmin; margin-right: 20px" href="/oauth2/authorization/google" > LOGIN</a>
+            </br>
+            <a style="color: white; font-size: 2vmin; margin-right: 20px" href="/oauth2/authorization/naver" >Naver LOGIN</a>
+
+            </br>
+            <a style="color: white; font-size: 2vmin; margin-right: 20px" href="/oauth2/authorization/google" >Google LOGIN</a>
         </a>
         <a th:if="${userName != null}" >
             <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a></br>
