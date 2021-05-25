@@ -32,7 +32,7 @@ public class NoticeService {
         List<NoticeDto> dList=new ArrayList<>();
         for(int i=0; i<list.size(); i++){
             NoticeDto dto = NoticeDto.builder()
-                    .user(userService.getUserById(list.get(i).getId()))
+                    .user(userService.getUserById(list.get(i).getUserid()))
                     .id(list.get(i).getId())
                     .title(list.get(i).getTitle())
                     .createdAt(list.get(i).getCreatedAt())
