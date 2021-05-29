@@ -1,5 +1,6 @@
 package com.jongyeon.teslagazua.config;
 
+import com.jongyeon.teslagazua.aop.CronLogging;
 import com.jongyeon.teslagazua.service.ImageService;
 import com.jongyeon.teslagazua.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,13 @@ public class ImageScheduleConfig {
     @Autowired
     ImageService imageService;
 
+    @CronLogging
     @Scheduled(cron = "0 0 6 * * 2-6")
     public void stopUpdate(){
        imageService.stopUpdate();
     }
 
+    @CronLogging
     @Scheduled(cron = "59 29 22 * * 1-5")
     public void startUpdate(){
        imageService.autoUpdate();
