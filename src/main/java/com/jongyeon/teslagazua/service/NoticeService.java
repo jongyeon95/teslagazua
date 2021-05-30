@@ -52,6 +52,7 @@ public class NoticeService {
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .createdAt(notice.getCreatedAt())
+                .updatedAt(notice.getUpdatedAt())
                 .view(notice.getView())
                 .build();
         return dto;

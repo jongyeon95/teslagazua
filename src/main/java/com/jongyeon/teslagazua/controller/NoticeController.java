@@ -34,11 +34,19 @@ public class NoticeController {
         return "notice";
     }
 
-    @ResponseBody
+
     @GetMapping("/notice/{id}")
-    public String getDetail(@PathVariable("id") Long id){
+    public String getDetail(@PathVariable("id") Long id,Model model){
+        SessionUser user= (SessionUser) httpSession.getAttribute("user");
         NoticeDto dto=noticeService.getNotice(id);
-        return dto.toString();
+        if (user!=null){
+            model.addAttribute("userName",user.getName());
+            model.addAttribute("userEmail",user.getEmail());
+        }
+        if (dto != null){
+            model.addAttribute("notice",dto);
+        }
+        return "noticeDetail";
     }
 
     @ResponseBody
