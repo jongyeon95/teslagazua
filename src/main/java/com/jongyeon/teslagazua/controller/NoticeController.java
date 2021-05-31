@@ -1,5 +1,6 @@
 package com.jongyeon.teslagazua.controller;
 
+import com.jongyeon.teslagazua.aop.ControllerLogging;
 import com.jongyeon.teslagazua.model.NoticeDto;
 import com.jongyeon.teslagazua.model.SessionUser;
 import com.jongyeon.teslagazua.service.NoticeService;
@@ -20,6 +21,7 @@ public class NoticeController {
     @Autowired
     HttpSession httpSession;
 
+    @ControllerLogging
     @GetMapping("/notice")
     public String getList(Model model){
         SessionUser user= (SessionUser) httpSession.getAttribute("user");
@@ -35,6 +37,7 @@ public class NoticeController {
     }
 
 
+    @ControllerLogging
     @GetMapping("/notice/{id}")
     public String getDetail(@PathVariable("id") Long id,Model model){
         SessionUser user= (SessionUser) httpSession.getAttribute("user");

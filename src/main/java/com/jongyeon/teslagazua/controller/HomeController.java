@@ -1,5 +1,6 @@
 package com.jongyeon.teslagazua.controller;
 
+import com.jongyeon.teslagazua.aop.ControllerLogging;
 import com.jongyeon.teslagazua.model.SessionUser;
 import com.jongyeon.teslagazua.model.StockDto;
 import com.jongyeon.teslagazua.service.YahooApiService;
@@ -22,6 +23,7 @@ public class HomeController {
     @Autowired
     HttpSession httpSession;
 
+    @ControllerLogging
     @GetMapping("/")
     public String home(Model model) throws IOException {
         SessionUser user= (SessionUser) httpSession.getAttribute("user");
