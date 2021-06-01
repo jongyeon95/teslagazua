@@ -53,8 +53,9 @@ public class NoticeService {
                 .content(notice.getContent())
                 .createdAt(notice.getCreatedAt())
                 .updatedAt(notice.getUpdatedAt())
-                .view(notice.getView())
+                .view(notice.getView()+1)
                 .build();
+        updateNotice(dto);
         return dto;
     }
 
@@ -67,6 +68,19 @@ public class NoticeService {
                 .view(0L)
                 .updatedAt(LocalDateTime.now())
                 .createdAt(LocalDateTime.now())
+                .build();
+        return noticeRepository.save(notice);
+    }
+
+    public Notice updateNotice(NoticeDto dto){
+        Notice notice = Notice.builder()
+                .id(dto.getId())
+                .userid(dto.getUser().getId())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .view(dto.getView())
+                .createdAt(dto.getCreatedAt())
+                .updatedAt(LocalDateTime.now())
                 .build();
         return noticeRepository.save(notice);
     }
