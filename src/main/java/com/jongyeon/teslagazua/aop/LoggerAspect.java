@@ -13,14 +13,13 @@ public class LoggerAspect {
 
     @Around("@annotation(CronLogging)")
     public Object  logCron(ProceedingJoinPoint pjp) throws Throwable{
-        log.info("exec "+pjp.getSignature().getName());
+        log.info("cron "+pjp.getSignature().getName());
         return pjp.proceed();
     }
 
     @Around("@annotation(ControllerLogging)")
     public Object  logController(ProceedingJoinPoint pjp) throws Throwable{
         log.info("enter "+pjp.getSignature().getName()+" controller");
-
         return pjp.proceed();
     }
  }
