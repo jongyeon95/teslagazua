@@ -2,6 +2,7 @@ package com.jongyeon.teslagazua.service;
 
 import com.jongyeon.teslagazua.entity.Comment;
 import com.jongyeon.teslagazua.entity.User;
+import com.jongyeon.teslagazua.exception.IdNotFoundException;
 import com.jongyeon.teslagazua.model.CommentDto;
 import com.jongyeon.teslagazua.repository.CommentRepository;
 import com.jongyeon.teslagazua.repository.UserRepository;
@@ -43,5 +44,18 @@ public class CommentService {
                 .createdTime(LocalDateTime.now())
                 .build();
         return commentRepository.save(comment);
+    }
+
+    public boolean deleteComment(Long id, String userEmail){
+        User user=userService.getUserByEmail(userEmail);
+        if(user==null)
+            return false;
+        Comment comment=commentRepository.findById(id).orElseThrow(()-> new IdNotFoundException());
+        if(comment.getUserEmail().equals(userEmail)&&comment!=null){
+            commentRepository.delete(comment);
+            return true;
+        }
+        return false;
+
     }
 }

@@ -40,4 +40,18 @@ public class CommentController {
         return HttpStatus.OK;
     }
 
+    @DeleteMapping("/comment/{id}")
+    public HttpStatus deleteComment(@PathVariable("id") Long id){
+        SessionUser user= (SessionUser) httpSession.getAttribute("user");
+        if (user==null){
+            return HttpStatus.NOT_ACCEPTABLE;
+        }
+
+        if(commentService.deleteComment(id,user.getEmail())){
+            return HttpStatus.OK;
+        }
+        
+        return HttpStatus.NOT_ACCEPTABLE;
+    }
+
 }
