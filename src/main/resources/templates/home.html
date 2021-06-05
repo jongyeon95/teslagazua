@@ -66,6 +66,7 @@
         <a th:if="${userName != null}" >
             <a style="color: white;  font-size: 3vmin" href="/logout"> LOGOUT </a></br>
             <a style="color: white" th:text="${userName}+'님 반갑습니다'"> </a>
+            <a id="email" hidden th:text="${userEmail}"></a>
         </a>
     </div>
 </div>
@@ -145,6 +146,7 @@
             url: '/comment',
             success: function (result) {
                 var html="";
+                var email=$("#email").text();
 
                 for( index in result){
                     var username=result[index].username;
@@ -160,12 +162,32 @@
                     html += '<div style="'+'font-size: 2vmin; margin-left: 10%">'+result[index].contents+'</div>';
                     html += '<div style="'+'text-align: right; margin-right: 10%">'+newName+'</div>';
                     html += '<div style="'+'text-align: right; margin-right: 10%">'+result[index].created_time+'</div>';
+                    if(email==result[index].user_email) {
+
+                        html += '<div style="text-align: right; margin-right: 10%"><button onclick="deleteComment('+result[index].id+')">삭제</button></div>';
+                    }
                     html += '</div></br>';
                 }
                 $("#comments").empty();
                 $("#comments").append(html);
             }
         })
+    }
+
+    function deleteComment(num) {
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/comment/'+num,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            success : function (result) {
+                $("#new_comment").val('');
+                getComments();
+                alert("댓글 삭제완료");
+            }
+        })
+
     }
 
 

@@ -50,7 +50,7 @@ public class CommentController {
         if(commentService.deleteComment(id,user.getEmail())){
             return HttpStatus.OK;
         }
-        
+
         return HttpStatus.NOT_ACCEPTABLE;
     }
 
