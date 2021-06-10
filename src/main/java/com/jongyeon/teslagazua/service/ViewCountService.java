@@ -28,8 +28,17 @@ public class ViewCountService {
         viewCountRepository.save(viewCount);
     }
 
+
     public ViewCount getTodayViewCount(){
-        return viewCountRepository.findByDate(LocalDate.now());
+        return getViewCount(LocalDate.now());
+    }
+
+    public ViewCount getYesterdayViewCount(){
+        return getViewCount(LocalDate.now().minusDays(1));
+    }
+
+    public ViewCount getViewCount(LocalDate localDate){
+        return viewCountRepository.findByDate(localDate);
     }
 
 }
