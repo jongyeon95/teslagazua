@@ -12,8 +12,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class ViewCountScheduleConfig {
 
+
+    private ViewCountService viewCountService;
+
     @Autowired
-    ViewCountService viewCountService;
+    public ViewCountScheduleConfig(ViewCountService viewCountService) {
+        this.viewCountService = viewCountService;
+    }
 
     @CronLogging
     @Scheduled(cron = " 0 0 0 * * *")
