@@ -12,8 +12,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class StockScheduleConfig {
 
+
+    private StockService stockService;
+
     @Autowired
-    StockService stockService;
+    public StockScheduleConfig(StockService stockService) {
+        this.stockService = stockService;
+    }
 
     @CronLogging
     @Scheduled(cron = "0 0 6 * * 2-6")
