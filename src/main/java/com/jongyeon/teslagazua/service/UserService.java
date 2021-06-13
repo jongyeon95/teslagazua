@@ -10,8 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+
+    private UserRepository userRepository;
+
     @Autowired
-    UserRepository userRepository;
+    public UserService (UserRepository userRepository){
+        this.userRepository=userRepository;
+    }
 
     public User getUserByEmail(String s){
         return userRepository.findByEmail(s).orElseThrow(()->new EmailNotFoundException());
