@@ -12,13 +12,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class ImageScheduleConfig {
 
-
-    private ImageService imageService;
-
     @Autowired
-    public ImageScheduleConfig(ImageService imageService) {
-        this.imageService = imageService;
-    }
+    ImageService imageService;
 
     @CronLogging
     @Scheduled(cron = "0 0 6 * * 2-6")
