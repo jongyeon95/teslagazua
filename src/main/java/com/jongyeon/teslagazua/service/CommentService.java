@@ -26,11 +26,13 @@ public class CommentService {
     }
 
 
+    // 댓글 조회
     public List<Comment> getCommentList(){
         List<Comment> list = commentRepository.findAllByOrderByCreatedTimeDesc();
         return  list;
     }
 
+    //댓글 추가
     public Comment addComment(CommentDto resource, String userEmail){
         User user=userService.getUserByEmail(userEmail);
         if(user==null)
@@ -46,6 +48,7 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
+    //댓글 삭제
     public boolean deleteComment(Long id, String userEmail){
         User user=userService.getUserByEmail(userEmail);
         if(user==null)

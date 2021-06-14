@@ -19,9 +19,12 @@ import java.util.concurrent.TimeUnit;
 public class ImageService implements CommandLineRunner {
 
 
+    //이미지 정보 Dto
     private ImageDto imageDto;
 
+    //스케줄 멤버
     private ScheduledThreadPoolExecutor exec;
+
 
     private ImageRepository imageRepository;
 
@@ -35,6 +38,7 @@ public class ImageService implements CommandLineRunner {
 
 
 
+    // 서버 구동시 시작
     @Override
     public void run(String... args) throws Exception {
         this.imageDto = new ImageDto();
@@ -93,6 +97,7 @@ public class ImageService implements CommandLineRunner {
             },0,10, TimeUnit.SECONDS);
     }
 
+    //이미지 가져오기
     public String getImageAddress(){
         Random rand =new Random();
         int upperbound=imageDto.getImageAddress().size();
@@ -105,6 +110,7 @@ public class ImageService implements CommandLineRunner {
         return  imageDto.getImageAddress().get(index);
     }
 
+    //이미지 추가
     public HttpStatus addImage(String address , float weight){
         if(address==null)
             return HttpStatus.BAD_REQUEST;

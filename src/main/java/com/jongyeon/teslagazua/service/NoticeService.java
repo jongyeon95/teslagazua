@@ -26,7 +26,7 @@ public class NoticeService {
         this.userService=userService;
     }
 
-
+    //게시글 목록 불러오기
     public List<NoticeDto> getNoticeList(){
         List<Notice> list = noticeRepository.findAllByOrderByIdDesc();
         List<NoticeDto> dList=new ArrayList<>();
@@ -44,6 +44,7 @@ public class NoticeService {
 
     }
 
+    //게시글 상세 가져오기
     public NoticeDto getNotice(Long id){
         Notice notice = noticeRepository.findById(id).orElseThrow(()-> new IdNotFoundException());
         NoticeDto dto = NoticeDto.builder()
@@ -60,6 +61,7 @@ public class NoticeService {
     }
 
 
+    //게시글 추가
     public Notice addNotice(NoticeDto dto){
         Notice notice = Notice.builder()
                 .title(dto.getTitle())
@@ -72,6 +74,7 @@ public class NoticeService {
         return noticeRepository.save(notice);
     }
 
+    //게시글 수정
     public Notice updateNotice(NoticeDto dto){
         Notice notice = Notice.builder()
                 .id(dto.getId())
