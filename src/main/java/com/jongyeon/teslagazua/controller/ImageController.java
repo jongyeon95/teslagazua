@@ -22,4 +22,9 @@ public class ImageController {
         return imageService.addImage(resource.getAddress(),resource.getWeight());
     }
 
+    @DeleteMapping("/images/{id}")
+    public HttpStatus deleteImage(@PathVariable("id") Long id){
+        return imageService.deleteImage(id);
+    }
+
 }

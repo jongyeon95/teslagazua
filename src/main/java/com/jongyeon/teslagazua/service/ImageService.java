@@ -1,6 +1,7 @@
 package com.jongyeon.teslagazua.service;
 
 import com.jongyeon.teslagazua.entity.Image;
+import com.jongyeon.teslagazua.exception.IdNotFoundException;
 import com.jongyeon.teslagazua.model.ImageDto;
 import com.jongyeon.teslagazua.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,13 @@ public class ImageService implements CommandLineRunner {
                 .weight(weight)
                 .build();
         imageRepository.save(newImage);
+        return HttpStatus.OK;
+    }
+
+    //이미지 삭제
+    public HttpStatus deleteImage(Long id){
+        Image image = imageRepository.findById(id).orElseThrow(()-> new IdNotFoundException());
+        imageRepository.delete(image);
         return HttpStatus.OK;
     }
 

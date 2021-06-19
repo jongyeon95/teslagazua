@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/stock/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/comment/**").hasAnyRole(Role.USER.name(),Role.GUEST.name(),Role.ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/images/**").hasRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE,"/images/**").hasRole(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout()
